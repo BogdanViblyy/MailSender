@@ -1,38 +1,32 @@
 name: Mail on Push
 
 on:
-  push:        # käivita töövoog iga push-sündmuse korral
+  push:                 # käivita töövoog iga pushi puhul
     branches:
-      - "**"   # soovi korral saab piirata, nt: ["main"]
+      - "**"            # vajadusel piirda harud nt ["main"]
 
 jobs:
   send_mail:
-    runs-on: ubuntu-latest   # töötab GitHubi hostitud Ubuntu jooksukeskkonnas
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4   # kloonib repo runnerisse, et oleks juurdepääs koodile
+        uses: actions/checkout@v4
 
       - name: Send email on push
         uses: dawidd6/action-send-mail@v6
         with:
-          # SMTP-server. Gmaili jaoks — smtp.gmail.com, teiste teenusepakkujate puhul nende server.
-          server_address: smtp.gmail.com
+          server_address: smtp.gmail.com   # Gmaili SMTP; teiste teenusepakkujate puhul muuda
           server_port: 465
           secure: true
 
-          # Kasutajatunnus ja parool võetakse repo Secretitest.
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
+          username: ${{ secrets.MAIL_USERNAME }}   # määra Settings → Secrets all
+          password: ${{ secrets.MAIL_PASSWORD }}   # kasuta rakenduse parooli / app password
 
-          # Saatja ja saaja aadressid.
-          from: ${{ secrets.MAIL_USERNAME }}        # tavaliselt sama aadress mis kasutajanimi
-          to: recipient@example.com                  # mitu saajat eralda komadega
+          from: ${{ secrets.MAIL_USERNAME }}
+          to: recipient@example.com                # mitu saajat: a@b.com,c@d.com
 
-          # E-kirja teema.
           subject: "Push: ${{ github.repository }}"
-
-          # E-kirja sisu (tavaline tekst).
           body: |
             Repo:   ${{ github.repository }}
             Pusher: ${{ github.event.pusher.name }}
