@@ -1,7 +1,7 @@
 name: Mail on Push
 
 on:
-  push:                 # käivita töövoog iga pushi  puhul
+  push:                 # käivita töövoog iga pushi puhul
     branches:
       - "**"            # vajadusel piirda harud nt ["main"] 
 
