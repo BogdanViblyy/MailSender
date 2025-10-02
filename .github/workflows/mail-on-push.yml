@@ -3,7 +3,7 @@ name: Mail on Push
 on:
   push:                 # käivita töövoog iga pushi  puhul
     branches:
-      - "**"            # vajadusel piirda harud nt ["main"]
+      - "**"            # vajadusel piirda harud nt ["main"] 
 
 jobs:
   send_mail:
