@@ -24,7 +24,7 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}   # kasuta rakenduse parooli / app password
 
           from: ${{ secrets.MAIL_USERNAME }}
-          to: recipient@example.com                # mitu saajat: a@b.com,c@d.com
+          to: bogdan.viblyy@icloud.com                # mitu saajat: a@b.com,c@d.com
 
           subject: "Push: ${{ github.repository }}"
           body: |
